@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{{ url_for('main.payments') }}" method="post">
+
+    <section class='form'>
+        <h1>Booking Details</h1>
+        <input type="text" id="projection" name="projection" value="Projection Id: {{proj}}" readonly>
+        <input type="text" id="seats" name="seats" value="Total Seats: {{seats}}" readonly>
+        <input type="hidden" id="payment_method" name="payment_method" value="{{mode}}">
+        <h2>&nbsp;&nbsp;Make a Payment&nbsp;&nbsp;</h2>
+
+        {% include 'auth/error.html' %}
+
+            <div><label>Card Number<br><input type="text" name="card_number" placeholder="Enter card number..." pattern="[0-9]{16}" maxlength="16" title="Please enter a 16-digit credit/debit card number" required/></label></div>
+            <div><label><br>Expiration Date<br><input type="text" name="expiration_date" placeholder="MM/YY"  maxlength="5" required/></label></div>
+            <div><label><br>CVV<br><input type="text" name="cvv" placeholder="Enter CVV..."  maxlength="3" required/></label></div>
+            <div><label><br>Amount<br><input type="text" name="amount" value="{{price}}" placeholder="Enter amount..." readonly/></label></div>
+            <div><input class='submit' type="submit" value="Pay Now"/></div>
+        </form>
+
+        <div>
+            <a href="{{ url_for('main.index') }}" style="color: rgb(185, 31, 108)">Back to Home</a>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <section class='form'>
+        <h2>&nbsp;&nbsp;Search Movies&nbsp;&nbsp;</h2>
+
+        {% include 'auth/error.html' %}
+
+        <form action="{{ url_for('main.search_movies') }}" method="post">
+            <div><label>Movie Name<br><input type="text" name="movie_name" placeholder="Enter movie name..." required/></label></div>
+            <div><input class='submit' type="submit" value="Search"/></div>
+        </form>
+
+        {% if request.method == 'POST' %}
+        {% if movies %}
+            {% for m in movies %}
+                Movie name: {{ m.title }}
+                <br>
+                Director: {{ m.director }}
+                <br>
+                <a href="{{ url_for('auth.signup') }}">Book your Tickets Now</a>
+                <br>
+            {% endfor %}
+        {% elif movies|length == 0 %}
+            <p>Movie Not found </p>
+        {% endif %}
+    {% endif %}
+    
+
+
+        <br>
+        <div>
+            <a href="{{ url_for('main.index') }}" style="color: rgb(185, 31, 108)">Back to Home</a>
+        </div>
+    </section>
+
+{% endblock %}

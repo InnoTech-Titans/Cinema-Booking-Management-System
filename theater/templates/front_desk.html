@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Theater</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='icon.ico') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='cinema.css') }}">
+    </head>
+    <body>
+        <header class="header">
+            <div>
+                {% if request.path == '/' %} <!-- Check if it's the home page -->
+                    <div id="user-info">
+                        <!-- <img src="{{ url_for('static', filename='user-logo.png') }}" alt="User Logo" /> -->
+                        {% if current_user.is_authenticated %}
+                            <span>Welcome {{ current_user }}</span>
+                        {% else %}
+                            <span>Welcome Front Desk</span>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <br>
+                {% if current_user.is_authenticated: %}
+                    {% elif current_user.role == current_user.role.__class__.frontdesk %}
+                        <a href="{{ url_for('main.index') }}">Home</a>
+                        <a href="{{ url_for('main.user') }}">Profile</a>
+                        <a href="{{ url_for('main.reservation')}}">Buy Tickets </a>
+                        <a href="{{ url_for('auth.logout') }}">Log out</a>
+                    {% endif %}
+                {% else %}
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                    <a href="{{ url_for('main.search_movies') }}">Search Movies</a>
+                    <a href="{{ url_for('auth.signup') }}">Sign Up</a>
+                    <a href="{{ url_for('auth.login') }}">Login</a>
+                {% endif %}
+            </div>
+        </header>
+
+        <section class="content">
+            {% block content %}{% endblock %}
+        </section>
+
+        <footer><small style="color:whitesmoke;">Developed for Web applications</small></footer>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type="text/javascript" src="{{url_for('static', filename='js/main.js') }}"></script>
+    </body>
+</html>
