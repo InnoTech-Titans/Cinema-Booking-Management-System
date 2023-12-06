@@ -32,6 +32,7 @@ export FLASK_ENV=development
 flask run
 ```
 
+
 ## Technology
 - Backend:
   * Python
