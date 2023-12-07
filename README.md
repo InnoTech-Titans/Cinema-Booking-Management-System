@@ -4,7 +4,9 @@
   LINCOLN CINEMAS
 </h1>
 <h4 align="center">A theater management and ticket booking system</h5>
-
+<div align="center">
+<img width="446" alt="image" src="https://github.com/InnoTech-Titans/Cinema-Booking-Management-System/assets/126259814/c85e6308-75ce-487a-91f3-abde25e53ca8">
+</div>
 <br>
 <details open="open">
   <summary>Table of Contents</summary>
